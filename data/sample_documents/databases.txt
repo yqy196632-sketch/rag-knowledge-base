@@ -1,0 +1,11 @@
+Databases are organized collections of structured information stored electronically. They are designed for efficient data retrieval, insertion, and management.
+
+SQLite is a lightweight, serverless, self-contained database engine. It stores the entire database as a single file on disk, making it incredibly portable. SQLite is perfect for embedded applications, testing, and small to medium-sized projects.
+
+PostgreSQL is a powerful, open-source object-relational database system. It supports advanced data types, full-text search, JSON/JSONB storage, and complex queries. PostgreSQL is known for its reliability and feature completeness.
+
+ChromaDB is a vector database designed for AI applications. Unlike traditional databases that use exact matches or keyword search, vector databases use similarity search based on embeddings. This makes them ideal for semantic search and RAG applications.
+
+When choosing a database, consider factors like data structure, query patterns, scalability needs, and consistency requirements. NoSQL databases like MongoDB are great for flexible schemas, while SQL databases like PostgreSQL excel at complex queries and relationships.
+
+Database indexing is crucial for performance. B-tree indexes are common for equality and range queries. Hash indexes are faster for exact matches. Vector databases use specialized indexes like HNSW for approximate nearest neighbor search.

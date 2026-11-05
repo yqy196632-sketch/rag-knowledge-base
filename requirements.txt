@@ -1,0 +1,28 @@
+# ============================================================
+# RAG 知识库依赖清单
+
+
+# ---- LangChain 主框架（共用 langchain-core，版本必须整套对齐）----
+langchain==1.4.8                  # 主包：LCEL / Agent 抽象
+langchain-core==1.7.4             # 核心接口：Runnable / Prompt / OutputParser
+langchain-text-splitters==1.1.3   # 文本切分：RecursiveCharacterTextSplitter
+
+# ---- 集成包：向量库 / Embedding / 大模型 ----
+langchain-chroma==1.1.0           # Chroma(persist_directory=...) 接入
+langchain-huggingface==1.2.3      # HuggingFaceEmbeddings：本地 bge 模型
+langchain-deepseek==1.1.1         # ChatDeepSeek：自动读 DEEPSEEK_API_KEY
+
+# ---- 存储与模型 ----
+chromadb==1.5.9                   # 向量数据库（langchain-chroma 的底层依赖）
+sentence-transformers==6.2.0      # 句向量模型加载（BAAI/bge-small-zh-v1.5）
+
+# ---- 配置 / API 服务 / 前端 / 数据校验 ----
+python-dotenv==1.2.4              # 读取 .env
+fastapi==0.162.0                  # API 服务
+uvicorn==0.54.0                   # ASGI 服务器
+streamlit==1.66.1                 # 前端页面
+pydantic==2.14.2                  # 数据校验（LangChain 1.x 要求 pydantic v2）
+
+# ---- 测试 ----
+pytest==9.2.0                     # 单元测试
+httpx==0.28.1                     # FastAPI TestClient 的 HTTP 客户端

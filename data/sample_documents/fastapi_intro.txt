@@ -1,0 +1,11 @@
+FastAPI is a modern, fast web framework for building APIs with Python. It is based on standard Python type hints and is one of the fastest Python frameworks available, on par with NodeJS and Go.
+
+FastAPI uses Pydantic for data validation and serialization. When you define a model with Pydantic, FastAPI automatically validates incoming request data against that model and returns appropriate error messages if validation fails.
+
+The @app.get(), @app.post(), @app.put(), and @app.delete() decorators are used to define route handlers. Each decorator takes a path as an argument and can include additional parameters like response_model for type hints.
+
+Dependency injection is a core feature of FastAPI. Using the Depends() function, you can declare dependencies that are automatically resolved and injected into your route handlers. This makes testing and code organization much easier.
+
+FastAPI automatically generates interactive API documentation using OpenAPI and JSON Schema. When you run a FastAPI application, you can access the docs at /docs (Swagger UI) and /redoc (ReDoc).
+
+Path parameters and query parameters are first-class citizens in FastAPI. Path parameters like /items/{item_id} are required, while query parameters like ?skip=0&limit=10 are optional with default values. Type hints ensure automatic validation and conversion.
