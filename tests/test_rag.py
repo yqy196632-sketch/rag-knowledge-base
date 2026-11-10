@@ -55,8 +55,8 @@ def fake_db(tmp_path, monkeypatch):
     monkeypatch.setattr(settings, "SIMILARITY_THRESHOLD", 0.0)  # 通用用例不过滤
     monkeypatch.setattr(ingest_service, "data_dir", str(tmp_path / "docs"))
     (tmp_path / "docs").mkdir()
-    monkeypatch.setattr(vectorstore, "build_embeddings", lambda: FakeEmbeddings(size=384))
-    return vectorstore.set_vectordb(vectorstore.create_chroma(FakeEmbeddings(size=384)))
+    monkeypatch.setattr(vectorstore, "build_embeddings", lambda: FakeEmbeddings(size=512))
+    return vectorstore.set_vectordb(vectorstore.create_chroma(FakeEmbeddings(size=512)))
 
 
 # ---------------- 真实 Embedding 链路 ----------------

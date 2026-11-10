@@ -18,7 +18,7 @@ LLM（DeepSeek Chat）→ 读取上下文块并生成回答
 🛠️ 技术栈
 后端：FastAPI, Uvicorn, Pydantic
 向量库：Chroma（持久化到本地 ./chroma_db）
-Embedding：HuggingFace bge-small-zh-v1.5（中文友好，384 维）
+Embedding：HuggingFace bge-small-zh-v1.5（中文友好，512 维）
 LLM：DeepSeek `deepseek-flash`（DeepSeek-V4.1-Flash，langchain-deepseek 的 ChatDeepSeek，默认关闭思考模式）
 前端：Streamlit
 ```

@@ -14,7 +14,7 @@ class Settings:
     """Application settings loaded from environment variables."""
 
     # ---------- Embedding（中文优先） ----------
-    # bge-small-zh-v1.5：384 维、约 90MB，中文检索质量明显强于 all-MiniLM-L6-v2
+    # bge-small-zh-v1.5：512 维、约 90MB，中文检索质量明显强于 all-MiniLM-L6-v2
     EMBEDDING_MODEL: str = os.getenv("EMBEDDING_MODEL", "BAAI/bge-small-zh-v1.5")
 
     # ---------- 向量库 ----------
