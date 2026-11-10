@@ -12,4 +12,3 @@ chroma_db/
 # 测试缓存 / IDE 配置 / AI 会话记录：均为本地产物，不入库
 .pytest_cache/
 .idea/
-.workbuddy/
