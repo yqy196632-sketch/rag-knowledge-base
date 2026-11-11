@@ -98,7 +98,7 @@ Streamlit 侧栏同样提供文档列表、上传、删除与「全量同步 dat
 pytest -q
 ```
 
-- 入库 → 检索：用真实 Embedding（本地跑）
+- 入库 → 检索：用真实 Embedding 模型
 - 整条 RAG 链：用 `GenericFakeChatModel` 验证「检索 → 拼 prompt → 生成」不崩
 
 ## 🔑 两个关键认知
@@ -110,10 +110,10 @@ pytest -q
 
 | 项 | 做法 |
 |---|---|
-| 相似度阈值 | `similarity_search_with_score` 拿 L2 距离（**越小越相关**），`SIMILARITY_THRESHOLD=1.15` 过滤。本机 bge-small-zh-v1.5 实测：相关问题 `0.63~1.07`，无关问题 `1.21~1.49`；设 0 关闭过滤 |
-| 不幻觉 | 一块都没通过阈值时直接返回「知识库中没有找到相关内容」，**不调用大模型**（省钱，也不会拿无关上下文硬编答案） |
-| 可追溯 | 上下文与来源统一带 `[1][2]` 编号，prompt 要求答案标注引用；`/query` 响应每项带 `index` / `score`，另有 `threshold` / `skipped_llm` |
-| LLM 容错 | `request_timeout=30`、`max_retries=2` 配置化。⚠️ 字段名是 `request_timeout`；传 `timeout` 会被 pydantic 静默忽略（实测 `extra=ignore`） |
+| 相似度阈值 | `similarity_search_with_score` 取 L2 距离（**越小越相关**），`SIMILARITY_THRESHOLD=1.15` 过滤，阈值可按所用模型与语料标定；设 0 关闭过滤 |
+| 不幻觉 | 无块通过阈值时直接返回「知识库中没有找到相关内容」，**不调用大模型**，避免基于无关上下文生成答案 |
+| 可追溯 | 回答与检索到的来源片段同步返回，答案依据可核对 |
+| LLM 容错 | `request_timeout=30`、`max_retries=2` 配置化。注意字段名为 `request_timeout`；传 `timeout` 会被 pydantic 按 `extra=ignore` 忽略 |
 | 复用与兜底 | LLM 懒加载单例复用；全局异常处理器记日志并返回结构化 500；错误分流 503（缺 key）/ 502（超时限流）/ 422（契约） |
 
-阈值调参：调大 → 召回更宽松（可能混入无关块），调小 → 更严格（可能挡掉相关内容）。
+阈值说明：增大阈值 → 召回更宽松（可能混入无关块）；减小阈值 → 更严格（可能挡掉相关内容）。
